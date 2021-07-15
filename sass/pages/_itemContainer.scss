@@ -11,7 +11,7 @@
 .item-list {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
 }
 .item {
     width: 20rem;
@@ -24,7 +24,6 @@
         width: 100%;
         overflow: hidden;
         border-bottom: 1px solid black;
-
         img {
             position: absolute;
             height: 100%;
