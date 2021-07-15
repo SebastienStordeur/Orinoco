@@ -1,0 +1,33 @@
+@import "../utils/variables";
+
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1rem;
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 5rem;
+}
+.item {
+    width: 20rem;
+    height: 20rem;
+    border: 1px solid black;
+    &__photo {
+        position: relative;
+        height: 14rem;
+        width: 100%;
+        border: 3px solid black;
+
+        img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__details {
+        display: flex;
+        justify-content: space-between;
+    }
+}
