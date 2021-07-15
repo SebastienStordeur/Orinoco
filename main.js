@@ -21,7 +21,7 @@ fetch("http://localhost:3000/api/cameras")
           details.classList.add("item__details");
 
           itemImg.innerHTML = `<img src="${object.imageUrl}"></img>`;
-          details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price} € </span>`;
+          details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
         }
         createCard();
       }
