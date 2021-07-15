@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -29,22 +32,38 @@
     </header>
     <main id="main">
         <section class="product-list">
+            <div class="product-list__banner">
+                <img src="./img/banniere_camera.jpg" alt="Bannière appareil photo"/>
+            </div>
             <h2 class="product-list__title">
                 Découvrez nos produits
             </h2>
-            <div class="item-list">
-                <!--<div class="item">
-                    <div class="item__photo"></div>
-                    <div class="item__details">
-                        <button class="item__details--btn detailsbtn">Détails</button>
-                        <button class="item__details--btn addToCart">Ajouter au panier</button>
-                    </div>
-                </div>-->
-            </div>
+            <div class="item-list"></div>
         </section>
     </main>
-    <footer id="footer">
-
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-knowus footer-column">
+                <h3>Pour mieux nous connaître</h3>
+                <a href="#">À propos d'Orinoco</a>
+                <a href="#">Carrières</a>
+                <a href="Durabilité"></a>
+            </div>
+            <div class="footer-paiement-option footer-column">
+                <h3>Moyens de paiement</h3>
+                <a href="#">Cartes de paiement</a>
+                <a href="#">Paiement en plusieurs fois</a>
+                <a href="Chèques-cadeaux"></a>
+            </div>
+            <div class="footer-help footer-column">
+                <h3>Besoin d'aide</h3>
+                <a href="#">Voir ou suivre vos commandes</a>
+                <a href="#">Tarifs et options de livraison</a>
+                <a href="#">Retours et remplacements</a>
+                <a href="#">Orinoca assistant</a>
+                <a href="#">Service client</a>
+            </div>
+        </div>
     </footer>
 
 <script src="main.js"></script>
