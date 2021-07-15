@@ -1,5 +1,5 @@
 const itemList = document.querySelector('.item-list');
-
+//const itemPhoto = document.querySelector('.item__photo');
 
 
 // Reaching API 
@@ -10,10 +10,16 @@ fetch('http://localhost:3000/api/cameras')
     console.log(response[0]);
 
     try {
-      let elmtAPI = 0
+      let i
+      //const imgAPI = response[elmtAPI].imageURL;
+      for(i=0; i<response.length; i++){
       
-      const imgAPI = response[elmtAPI].imageURL;
       createCard();
+      //itemPhoto.appendChild(response[i-1].imageURL);
+      const itemPhoto = document.querySelector('.item__photo');
+      itemPhoto.insertAdjacentHTML = ("afterbegin", `<img src="${response[i].imageURL}"`);
+      }
+      
     }
     catch(err) {
       console.log(err)
