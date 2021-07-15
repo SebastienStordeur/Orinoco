@@ -68,6 +68,10 @@ a {
   overflow: hidden;
   box-shadow: 3px 3px 15px 2px #d9d9d9;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+.item:hover {
+  transform: scale(1.05);
 }
 .item__photo {
   position: relative;
