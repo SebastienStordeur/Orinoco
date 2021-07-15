@@ -4,7 +4,7 @@
 .product-list {
     display: flex;
     flex-direction: column;
-    max-width: 1440px;
+
     margin: auto;
     margin-top: 5rem;
     &__banner {
@@ -28,7 +28,8 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-gap: 1.5rem;
-    padding: 0 10rem;
+    max-width: 1440px;
+    margin: auto;
 }
 .item {
     width: 20rem;
