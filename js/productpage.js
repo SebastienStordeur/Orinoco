@@ -15,11 +15,12 @@ const id = getId.get("id");
                     const productPrice = document.querySelector('.product__details--price');
                     const selector = document.querySelector('.select-lense');
 
+                    document.title = object.name;
                     photoContainer.innerHTML = `<img src="${object.imageUrl}" alt="${object.name}"/>`;
                     productTitle.innerHTML = object.name;
-                    productDescription.innerHTML = `${object.description}`;
+                    productDescription.innerHTML = object.description;
                     productPrice.innerHTML = object.price/100 +'€';
-                    
+
                     for(let lense of object.lenses) {
                         const choice = document.createElement('option');
                         selector.appendChild(choice);
