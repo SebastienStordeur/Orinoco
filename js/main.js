@@ -1,12 +1,11 @@
-const itemList = document.querySelector(".item-list");
-
 // Reaching API
 fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
   .then((response) =>
     response.json().then((data) => {
       console.log(data);
+      const itemList = document.querySelector(".item-list");
         for (let object of data) {
-          // Create a card for each data element (Name, price and img only)
+          // Create a card for each data element (Links, name, price and img only)
           function createCard() {
             const linkID = document.createElement("a");
             const createDiv = document.createElement("div");
@@ -22,17 +21,16 @@ fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
             itemImg.classList.add("item__photo");
             details.classList.add("item__details");
             
-            linkID.setAttribute('href', '/Pages/product.html'+ '?' + `${object._id}`)
+            linkID.setAttribute('href', '/Pages/product.html'+ '?id=' + `${object._id}`)
             itemImg.innerHTML = `<img src="${object.imageUrl}" alt="${object.name}"/>`;
             details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
-            console.log(object._id)
-            console.log(linkID)
           }
         createCard();
-      //catch {
-        //itemList.innerHTML= "Nous n'avons pas pu afficher de produits, revenez ultérieurement";
-      //}
         }
       })
-    );
+      .catch ((error) => {
+        itemList.innerHTML = "Nous n'avons pas pu afficher de produits, revenez ultérieurement";
+      })
+  );
+
 
