@@ -1,0 +1,12 @@
+.product {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7rem;
+    &__photo-container {
+        width: 25rem;
+        height: 25rem;
+        margin-left: 4rem;
+        margin-right: 2rem;
+        border: 1px solid black;
+    }
+}
