@@ -144,5 +144,15 @@ a {
   object-fit: cover;
   position: absolute;
 }
+.product__details {
+  width: 30rem;
+  font-family: "Roboto", sans-serif;
+}
+.product__details--title {
+  font-size: 28px;
+}
+.product__details--TVA {
+  margin-top: -2rem;
+}
 
 /*# sourceMappingURL=style.css.map */

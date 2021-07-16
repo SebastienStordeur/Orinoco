@@ -16,4 +16,14 @@
             position: absolute;
         }
     }
+    &__details {
+        width: 30rem;
+        font-family: "Roboto", sans-serif;
+        &--title {
+            font-size: 28px;
+        }
+        &--TVA {
+            margin-top: -2rem;
+        }
+    }
 }
