@@ -8,5 +8,12 @@
         margin-left: 4rem;
         margin-right: 2rem;
         border: 1px solid black;
+        position: relative;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
     }
 }

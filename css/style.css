@@ -136,6 +136,13 @@ a {
   margin-left: 4rem;
   margin-right: 2rem;
   border: 1px solid black;
+  position: relative;
+}
+.product__photo-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
 }
 
 /*# sourceMappingURL=style.css.map */
