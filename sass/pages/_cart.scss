@@ -1,0 +1,19 @@
+.cart {
+  display: flex;
+  justify-content: space-evenly;
+  
+  &__form--order {
+    display: flex;
+    flex-direction: column;
+    input {
+      height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+  &__content {
+    border-radius: 0%;
+    &--items {
+      max-height: 30vh;
+    }
+  }
+}
