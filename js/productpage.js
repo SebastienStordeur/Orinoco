@@ -1,12 +1,11 @@
-const searchInURL = window.location.search;
-const getId = new URLSearchParams(searchInURL)
-const id = getId.get("id");
+const id = new URLSearchParams(window.location.search).get("id");
+
 
 //get specific product datas + assign
-
     fetch(`http://localhost:3000/api/cameras/${id}`, {method: 'GET'})
         .then((response) => {
             response.json().then((data) => {
+                //Assign Data function => This function is used to fill content in page
                 function assignDatas(data) {
                     const photoContainer = document.querySelector('.product__photo-container');
                     const productTitle = document.querySelector('.product__details--title');
@@ -26,6 +25,25 @@ const id = getId.get("id");
                         choice.innerHTML = lense;
                     }
                 }
+                var items = [];
+                //Local Storage function
+                function storage(data) {
+                    
+                    document.querySelector('.product__addCart').addEventListener('click', () => {
+                        //console.log(items)
+                        items.push(data._id)
+                        console.log(items)
+                        window.localStorage.setItem("Cart", items);
+                    })
+                }
+                // Get storage content
+                function getStorageContent(data, items) {
+                    let storageContent = window.localStorage.setItem("Cart", items);
+                    if (!storageContent) return;
+                    else items = storageContent;
+                }
                 assignDatas(data);
+                storage(data);
+                getStorageContent(data)
             })
         })
