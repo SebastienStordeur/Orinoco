@@ -4,7 +4,6 @@ const itemList = document.querySelector(".item-list");
 fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
   .then((response) =>
     response.json().then((data) => {
-      getStorageContent(data, items)
         for (let object of data) {
           // Create a card for each data element (Links, name, price and img only)
           function createCard() {
