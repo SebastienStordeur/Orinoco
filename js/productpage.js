@@ -1,5 +1,5 @@
 const id = new URLSearchParams(window.location.search).get("id");
-
+//var items = [];
 
 //get specific product datas + assign
     fetch(`http://localhost:3000/api/cameras/${id}`, {method: 'GET'})
@@ -25,12 +25,13 @@ const id = new URLSearchParams(window.location.search).get("id");
                         choice.innerHTML = lense;
                     }
                 }
-                var items = [];
-                //Local Storage function
+                
+/*                 //Local Storage function
                 function storage(data) {
                     
-                    document.querySelector('.product__addCart').addEventListener('click', () => {
+                    document.querySelector('.product__addCart').addEventListener('click', (e) => {
                         //console.log(items)
+                        e.preventDefault();
                         items.push(data._id)
                         console.log(items)
                         window.localStorage.setItem("Cart", items);
@@ -41,9 +42,9 @@ const id = new URLSearchParams(window.location.search).get("id");
                     let storageContent = window.localStorage.setItem("Cart", items);
                     if (!storageContent) return;
                     else items = storageContent;
-                }
+                } */
                 assignDatas(data);
-                storage(data);
-                getStorageContent(data)
+                storage(data, items);
+                getStorageContent(data, items)
             })
         })
