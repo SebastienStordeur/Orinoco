@@ -8,20 +8,19 @@ const id = getId.get("id");
         .then((response) => {
             response.json().then((data) => {
                 function assignDatas(data) {
-                    object = data;
                     const photoContainer = document.querySelector('.product__photo-container');
                     const productTitle = document.querySelector('.product__details--title');
                     const productDescription = document.querySelector('.product__details--description');
                     const productPrice = document.querySelector('.product__details--price');
                     const selector = document.querySelector('.select-lense');
 
-                    document.title = object.name;
-                    photoContainer.innerHTML = `<img src="${object.imageUrl}" alt="${object.name}"/>`;
-                    productTitle.innerHTML = object.name;
-                    productDescription.innerHTML = object.description;
-                    productPrice.innerHTML = object.price/100 +'€';
+                    document.title = data.name;
+                    photoContainer.innerHTML = `<img src="${data.imageUrl}" alt="${data.name}"/>`;
+                    productTitle.innerHTML = data.name;
+                    productDescription.innerHTML = data.description;
+                    productPrice.innerHTML = data.price/100 +'€';
 
-                    for(let lense of object.lenses) {
+                    for(let lense of data.lenses) {
                         const choice = document.createElement('option');
                         selector.appendChild(choice);
                         choice.innerHTML = lense;
