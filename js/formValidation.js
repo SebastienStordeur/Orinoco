@@ -1,5 +1,6 @@
 
 
+
 const shoppingCart = document.querySelector('.cart__content--items');
 const lastName = document.querySelector('.lastname-input');
 const adress = document.querySelector('.adress-input');
@@ -37,32 +38,49 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
   .then((response) => {
     response.json().then((data) => {
       //Get element from localStorage
-      //getStorageContent(data);
       //Create element for each element in storage
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let totalPrice = 0;
       cartItms.forEach( (data) => {
         const createDiv = document.createElement("div");
         const itemImg = document.createElement("div");
+        const details = document.createElement("div")
         const itemName = document.createElement("h2");
         const price = document.createElement("span");
+        const deleteItm = document.createElement("button");
 
         shoppingCart.appendChild(createDiv);
         createDiv.appendChild(itemImg);
-        createDiv.appendChild(itemName);
-        createDiv.appendChild(price);
+        createDiv.appendChild(details)
+        details.appendChild(itemName);
+        details.appendChild(price);
+        details.appendChild(deleteItm);
 
         createDiv.classList.add('cart__content--item');
         itemImg.classList.add('cart__content--item__img');
+        details.classList.add('cart__content--item__details')
+        itemName.classList.add('cart__content--item__name')
         price.classList.add('cart__content--item__price');
+        deleteItm.classList.add('cart__content--item__delete'),
 
         itemImg.innerHTML = `<img src="${data.imageUrl}"/>`;
         itemName.innerHTML = data.name;
         price.innerHTML = `<h3>${data.price/100 + "€"}</h3>`;
+        deleteItm.innerHTML = "Supprimer ce produit";
         totalPrice += data.price/100;
-        console.log(totalPrice);
       })
-    
+      
+    function deleteProduct() {
+      shoppingCart.addEventListener('click', (event) => {
+        console.log('000')
+        if (event.target.classList[0] === "cart__content--item__delete") {
+          event.target.parentElement.parentElement.remove();
+          storage(data)
+          totalPrice -= data.price/100
+        }
+      })
+    }
+    deleteProduct();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
