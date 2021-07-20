@@ -1,33 +1,31 @@
-const shoppingCart = document.querySelector('.cart__content--items');
-const lastName = document.querySelector('.lastname-input');
-const adress = document.querySelector('.adress-input');
-const phoneNumber = document.querySelector('.phonenumber-input');
-const error = document.querySelector('.error-msg');
+const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
-
 
 //Validate every single input
 function formValidation() {
   form.addEventListener('submit', (e) => {
+
     var nameValue = document.querySelector('.name-input').value;
     var lastNameValue = document.querySelector('.name-input').value;
-    var letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
-    form.reset();
+    var adressValue = document.querySelector('.adress-input').value;
+    var cityValue = document.querySelector('.city-input');
+    var emailValue = document.querySelector('.email-input').value;
+
+    const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
+    const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    //form.reset();
     e.preventDefault();
     //Name checking
-    if(!nameValue.match(letters)) {
-      error.innerHTML = "Caractères incorrects"
-    } //si valeur de nom different des caractères lettres et espace
-    else {
-      error.innerHTML = ""
-    }
+    if(!nameValue.match(letters)) document.querySelector('.name-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.name-error').innerHTML = "";
     //LastName checking
-    if(!lastNameValue.match(letters)) {
-      error.innerHTML = "Caractères incorrects"
-    }
-    else {
-      error.innerHTML = ""
-    }
+    if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.lastname-error').innerHTML = "";
+    //Adress checking
+    //Mail checking
+    if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
+    else document.querySelector('.email-error').innerHTML = "";
   })
 } 
 
