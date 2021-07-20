@@ -30,29 +30,28 @@ function storage(data) {
 function storage(data) {
   document.querySelector('.product__addCart').addEventListener('click', (e) => {
     e.preventDefault();
-    var cart = localStorage.getItem(data);
-    //var cart = JSON.parse(localStorage.getItem(data));
-    // si localstorage vide alors creer array
-    if (cart === null) {
-      cart=[];
-      //console.log(cart)
+    let cartItms = JSON.parse(localStorage.getItem("Cart"));
+    //if !cartempty
+    if (cartItms) {
+      cartItms.push(data);
+      localStorage.setItem('Cart', JSON.stringify(cartItms))
+      console.log(cartItms)
     }
-    //creer une nouvelle entrée
-    cartItm = {
-      id: data._id,
-      name: data.name
-    };
-    cart.push(cartItm);
-    localStorage.setItem("Cart", JSON.stringify(cart));
-    console.log(cart)
+    //else cart empty, create an array
+    else {
+      cartItms = [];
+      cartItms.push(data);
+      localStorage.setItem('Cart', JSON.stringify(cartItms))
+      console.log(cartItms);
+    }
   })
-}
+} 
 
 // Get storage content
-function getStorageContent(data) {
-  let storageContent = window.localStorage.setItem("Cart", JSON.stringify(data));
-  if (!storageContent) return;
-  else data = storageContent;
-  console.log(storageContent)
-}
+ function getStorageContent(data) {
+  let cartItms = JSON.parse(localStorage.getItem("Cart"));
+  if (!cartItms) return ;
+  else data = cartItms;
+  //console.log(cartItms)
+} 
 

@@ -29,16 +29,18 @@
     <section class="cart">
         <div class="cart__form">
             <h2>Formulaire de commande</h2>
-            <form action="#" class="cart__form--order">
+            <form action="" class="cart__form--order">
                 
                 <label for="name">Votre nom : </label>
                 <input type="text" class="text-input name-input" name="name" placeholder="Nom">
-                
+                <div class="name-error error-msg"></div>
                 <label for="lastname">Votre prénom : </label>
                 <input type="text" class="text-input lastname-input" name="lastname" placeholder="Prénom">
+                <div class="lastname-error error-msg"></div>
                 <label for="adress">Votre adresse :</label>
                 <input type="text" class="text-input adress-input" name="adress" placeholder="Adresse">
-                <label for="phonenumber">Votre adresse :</label>
+                <div class="lastname-error error-msg"></div>
+                <label for="phonenumber">Votre numéro de téléphone :</label>
                 <input type="number" class="text-input phonenumber-input" name="phonenumber" placeholder="Numéro de téléphone">
                 <div class="phone-error error-msg"></div>
             </form>

@@ -25,11 +25,8 @@ var items = [];
                         choice.innerHTML = lense;
                     }
                 }
-                
-
-                
                 assignDatas(data);
                 storage(data);
-                //getStorageContent(data)
+                getStorageContent(data)
             })
         })

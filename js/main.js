@@ -26,6 +26,7 @@ fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
             details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
           }
         createCard();
+        getStorageContent(data)
         }
       })
       .catch ((error) => {

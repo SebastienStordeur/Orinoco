@@ -191,13 +191,19 @@ a {
 }
 .cart__form--order input {
   height: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .cart__content {
   border-radius: 0%;
 }
 .cart__content--items {
   max-height: 30vh;
+}
+
+.error-msg {
+  color: red;
+  font-size: 12px;
+  margin-top: -1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
