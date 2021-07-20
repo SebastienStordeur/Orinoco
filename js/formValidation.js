@@ -1,6 +1,3 @@
-
-
-
 const shoppingCart = document.querySelector('.cart__content--items');
 const lastName = document.querySelector('.lastname-input');
 const adress = document.querySelector('.adress-input');
@@ -10,37 +7,42 @@ const form = document.querySelector('form');
 
 
 //Validate every single input
-/* function formValidation() {
+function formValidation() {
   form.addEventListener('submit', (e) => {
     var nameValue = document.querySelector('.name-input').value;
-    var letters=/^[a-zA-Z\s]+$/; //contains only letters + spaces
+    var lastNameValue = document.querySelector('.name-input').value;
+    var letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
     form.reset();
     e.preventDefault();
+    //Name checking
     if(!nameValue.match(letters)) {
       error.innerHTML = "Caractères incorrects"
     } //si valeur de nom different des caractères lettres et espace
     else {
-      alert('')
-    } 
-    
+      error.innerHTML = ""
+    }
+    //LastName checking
+    if(!lastNameValue.match(letters)) {
+      error.innerHTML = "Caractères incorrects"
+    }
+    else {
+      error.innerHTML = ""
+    }
   })
-  
-} */
-
-//Get element from localStorage and assign them a space in the page
-//getStorageContent(data)
+} 
 
 
 //Post order
-//formValidation();
+formValidation();
 
 fetch("http://localhost:3000/api/cameras", {method: 'GET'})
   .then((response) => {
     response.json().then((data) => {
       //Get element from localStorage
-      //Create element for each element in storage
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let totalPrice = 0;
+
+      //Create element for each element in storage
       cartItms.forEach( (data) => {
         const createDiv = document.createElement("div");
         const itemImg = document.createElement("div");
@@ -69,18 +71,35 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         deleteItm.innerHTML = "Supprimer ce produit";
         totalPrice += data.price/100;
       })
-      
-    function deleteProduct() {
+    //Delete the selected product 
+    function deleteProduct(cartItms) {
       shoppingCart.addEventListener('click', (event) => {
-        console.log('000')
         if (event.target.classList[0] === "cart__content--item__delete") {
           event.target.parentElement.parentElement.remove();
-          storage(data)
+
+          //Using splice method to remove the selected item
+          cartItms.splice(event.currentTarget)
+
+
+        /* for(let i=0; i=cartItms.length; i++) {
+          let cartItms = JSON.parse(cartItms[i])
+          console.log(cartItms)
+          cartItms.splice(cartItms[i])
+        } */
+          
+
+
           totalPrice -= data.price/100
+          console.log(totalPrice)
         }
       })
     }
-    deleteProduct();
+    deleteProduct(cartItms);
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
+
+/*   for (let i =0; i<15;i++) {
+   Math.floor(Math.random()*36)
+   console.log( Math.floor(Math.random()*36))
+  } */

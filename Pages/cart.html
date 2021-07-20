@@ -41,12 +41,14 @@
                 <input type="text" class="text-input adress-input" name="adress" placeholder="Adresse">
                 <div class="lastname-error error-msg"></div>
                 <label for="phonenumber">Votre numéro de téléphone :</label>
-                <input type="number" class="text-input phonenumber-input" name="phonenumber" placeholder="Numéro de téléphone">
+                <input type="text" class="text-input phonenumber-input" name="phonenumber" placeholder="Numéro de téléphone">
                 <div class="phone-error error-msg"></div>
+                <button class="order-btn">Passer la commande</button>
             </form>
         </div>
         <div class="cart__content">
             <h2>Panier</h2>
+            <h4 class="cart__content--price">Prix : <span class="total-price"></span></h4>
             <div class="cart__content--items">
                 <!-- <div class="cart__content--item">
                     <div class="cart__content--item__img">
@@ -57,8 +59,8 @@
                 </div> -->
                 
             </div>
-            <h4 class="cart__content--price">Prix : <span class="total-price"></span></h4>
-            <button class="order-btn">Passer la commande</button>
+            
+            
         </div>
     </section>
     <footer class="footer">
@@ -85,7 +87,7 @@
             </div>
         </div>
     </footer>
-<script src="../js/storage.js"></script>
+
 <script src="../js/formValidation.js"></script>
 </body>
 </html>

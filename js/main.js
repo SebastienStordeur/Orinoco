@@ -5,6 +5,7 @@ fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
   .then((response) =>
     response.json().then((data) => {
         for (let object of data) {
+          let cartItms = JSON.parse(localStorage.getItem("Cart"));
           // Create a card for each data element (Links, name, price and img only)
           function createCard() {
             const linkID = document.createElement("a");
@@ -26,7 +27,7 @@ fetch("http://localhost:3000/api/cameras",{ method: 'GET'} )
             details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
           }
         createCard();
-        getStorageContent(data)
+
         }
       })
       .catch ((error) => {

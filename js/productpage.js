@@ -27,6 +27,5 @@ var items = [];
                 }
                 assignDatas(data);
                 storage(data);
-                getStorageContent(data)
             })
         })

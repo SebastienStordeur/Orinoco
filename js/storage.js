@@ -18,18 +18,3 @@ function storage(data) {
     }
   })
 } 
-
-
-
-
-// Get storage content
-
-
-
-
- function getStorageContent(data) {
-  let cartItms = JSON.parse(localStorage.getItem("Cart"));
-  if (!cartItms) return ;
-  else data = cartItms;
-} 
-
