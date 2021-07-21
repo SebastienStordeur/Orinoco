@@ -13,4 +13,4 @@ function storage(data) {
       localStorage.setItem('Cart', JSON.stringify(cartItms))
       console.log(cartItms);
     }
-} 
+}

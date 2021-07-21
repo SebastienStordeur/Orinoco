@@ -5,7 +5,7 @@ const form = document.querySelector('form');
 function formValidation() {
   form.addEventListener('submit', (e) => {
 
-    var nameValue = document.querySelector('.name-input').value;
+    var firstNameValue = document.querySelector('.name-input').value;
     var lastNameValue = document.querySelector('.name-input').value;
     var adressValue = document.querySelector('.adress-input').value;
     var cityValue = document.querySelector('.city-input').value;
@@ -18,11 +18,11 @@ function formValidation() {
     //form.reset();
     e.preventDefault();
     //Name checking
-    if(!nameValue.match(letters)) document.querySelector('.name-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.name-error').innerHTML = "";
-    //LastName checking
-    if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
+    if(!firstNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
+    //LastName checking
+    if(!lastNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.firstname-error').innerHTML = "";
     //Adress checking
     if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.adress-error').innerHTML = ""; 
@@ -35,7 +35,7 @@ function formValidation() {
   })
 } 
 
-//si tout les input sont validé alors post
+//si tout les input sont validés alors post
 /* const allInput = document.querySelectorAll('.error-msg');
 if(allInput.innerHTML = "") {
   //POST + reset + localstorage clear
@@ -93,30 +93,27 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         totalPrice += data.price/100;
       })
     //Delete the selected product 
-    function deleteProduct(cartItms) {
-      shoppingCart.addEventListener('click', (event) => {
-        if (event.target.classList[0] === "cart__content--item__delete") {
-          event.target.parentElement.parentElement.remove();
-
+    function deleteProduct() {
+      shoppingCart.addEventListener('click', (e) => {
+        if (e.target.classList[0] === "cart__content--item__delete") {
+          e.target.parentElement.parentElement.remove();
+          
           //Using splice method to remove the selected item
-          cartItms.splice(event.currentTarget)
-          
-
-        /* for(let i=0; i=cartItms.length; i++) {
-          let cartItms = JSON.parse(cartItms[i])
+          cartItms.splice(0, 1);
           console.log(cartItms)
-          cartItms.splice(cartItms[i])
-        } */
           
-
-
-          totalPrice -= data.price/100;
-          storage(data);
-          console.log(totalPrice)
+          
         }
+          
+        //localStorage.setItem('Cart', JSON.stringify(cartItms))
+          totalPrice = totalPrice - data.price/100;
+          console.log(totalPrice)
+        //Save the new cart in localStorage
+        //
+        //console.log(cartItms)
       })
     }
-    deleteProduct(cartItms);
+    deleteProduct();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })

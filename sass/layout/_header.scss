@@ -19,3 +19,14 @@
         }
     }
 }
+
+@media (max-width: 600px) {
+    .nav-bar {
+        &__links--list {
+            flex-direction: column;
+            li {
+                margin: 0 1rem;
+            }
+        }
+    }
+}

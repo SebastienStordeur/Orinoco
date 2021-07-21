@@ -21,3 +21,17 @@
         }
     }
 }
+
+@media (max-width: 710px) {
+    .footer {
+        height: auto;
+        padding-left: 2rem;
+        padding-bottom: 2rem;
+        &-wrapper {
+            flex-direction: column;
+        }
+        &-column {
+            margin-top: 2rem;
+        }
+    }
+}
