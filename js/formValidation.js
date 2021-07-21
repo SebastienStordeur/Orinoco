@@ -100,7 +100,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
 
           //Using splice method to remove the selected item
           cartItms.splice(event.currentTarget)
-
+          
 
         /* for(let i=0; i=cartItms.length; i++) {
           let cartItms = JSON.parse(cartItms[i])
@@ -110,7 +110,8 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
           
 
 
-          totalPrice -= data.price/100
+          totalPrice -= data.price/100;
+          storage(data);
           console.log(totalPrice)
         }
       })

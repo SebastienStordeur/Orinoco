@@ -1,5 +1,4 @@
 const id = new URLSearchParams(window.location.search).get("id");
-var items = [];
 
 //get specific product datas + assign
     fetch(`http://localhost:3000/api/cameras/${id}`, {method: 'GET'})
@@ -12,13 +11,13 @@ var items = [];
                     const productDescription = document.querySelector('.product__details--description');
                     const productPrice = document.querySelector('.product__details--price');
                     const selector = document.querySelector('.select-lense');
-
+                    //Assign each data element in the page to fill the layout
                     document.title = data.name;
                     photoContainer.innerHTML = `<img src="${data.imageUrl}" alt="${data.name}"/>`;
                     productTitle.innerHTML = data.name;
                     productDescription.innerHTML = data.description;
                     productPrice.innerHTML = data.price/100 +'€';
-
+                    //create enough options for each lense
                     for(let lense of data.lenses) {
                         const choice = document.createElement('option');
                         selector.appendChild(choice);
@@ -26,12 +25,10 @@ var items = [];
                     }
                 }
                 assignDatas(data);
-
+                //Store in localStorage the current product on click
                 document.querySelector('.product__addCart').addEventListener('click', (e) => {
                     e.preventDefault();
                     storage(data)
                 })
-                
-                //storage(data);
             })
         })
