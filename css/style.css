@@ -307,7 +307,7 @@ a {
     flex-direction: column-reverse;
   }
   .cart__form h2 {
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
   .cart__form--order {
     margin: 0 1rem;

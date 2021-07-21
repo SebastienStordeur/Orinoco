@@ -5,23 +5,23 @@ const form = document.querySelector('form');
 function formValidation() {
   form.addEventListener('submit', (e) => {
 
-    var firstNameValue = document.querySelector('.name-input').value;
-    var lastNameValue = document.querySelector('.name-input').value;
+    var firstNameValue = document.querySelector('.firstname-input').value;
+    var lastNameValue = document.querySelector('.lastname-input').value;
     var adressValue = document.querySelector('.adress-input').value;
     var cityValue = document.querySelector('.city-input').value;
     var emailValue = document.querySelector('.email-input').value;
 
     const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
-    const adressRegex = /^[0-9]{1,4}(([\-\/][0-9]{1,4})|(\/[ABCDFGHJKLMNPRSTV]{1,2}))*$/;
+    const adressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     //form.reset();
     e.preventDefault();
     //Name checking
-    if(!firstNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
+    if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
     //LastName checking
-    if(!lastNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
+    if(!firstNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.firstname-error').innerHTML = "";
     //Adress checking
     if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
@@ -44,14 +44,7 @@ if(allInput.innerHTML = "") {
 } */
 
 
-//POST FORM & CART
 
-/* fetch("http://localhost:3000/api/cameras/order", {method: 'POST' })
-  .then((response) => {
-    response.json().then((data) => {
-
-    })
-  }) */
 
 //Post order
 formValidation();
@@ -99,17 +92,12 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
           e.target.parentElement.parentElement.remove();
           
           //Using splice method to remove the selected item
-          cartItms.splice(0, 1);
+          cartItms.splice(cartItms[e], 1);
           console.log(cartItms)
-          
-          
         }
-          
         //localStorage.setItem('Cart', JSON.stringify(cartItms))
-          totalPrice = totalPrice - data.price/100;
+          totalPrice -= data.price/100;
           console.log(totalPrice)
-        //Save the new cart in localStorage
-        //
         //console.log(cartItms)
       })
     }
@@ -117,6 +105,17 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
+
+
+//POST FORM & CART
+
+/* fetch("http://localhost:3000/api/cameras/order", {method: 'POST' })
+  .then((response) => {
+    response.json().then((data) => {
+
+    })
+  })  */
+
 
 
 /*   var json = { ... };
