@@ -43,7 +43,6 @@
       &__price {
         font-family: "Roboto", sans-serif;
         font-size: 12px;
-        //padding-left: 5rem;
       }
       &__delete {
         font-size: 12px;
@@ -56,4 +55,22 @@
   color: red;
   font-size: 12px;
   margin-top: -1.75rem;
+}
+
+@media (max-width: 650px) {
+  .cart {
+    flex-direction: column-reverse;
+    &__form {
+      h2 {
+        margin-left: 2rem;
+      }
+    }
+    &__form--order {
+      margin: 0 1rem;
+    }
+    &__content {
+      margin-left: 1rem;
+      width: auto;
+    }
+  }
 }

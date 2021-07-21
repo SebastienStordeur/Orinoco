@@ -42,3 +42,28 @@
         cursor: pointer;
     }
 }
+
+@media (max-width: 750px) {
+    .product {
+        flex-direction: column-reverse;
+        margin-top: 0;
+        &__details {
+            margin-left: 4rem;
+            margin-bottom: 2rem;
+            width: auto;
+        }
+    }
+}
+
+@media (max-width: 490px) {
+    .product {
+        &__details {
+            margin-left: 1rem;
+        }
+        &__photo-container {
+            margin-left: 1rem;
+            width: 20rem;
+            height: 20rem;
+        }
+    }
+}
