@@ -8,11 +8,11 @@ function formValidation() {
     var nameValue = document.querySelector('.name-input').value;
     var lastNameValue = document.querySelector('.name-input').value;
     var adressValue = document.querySelector('.adress-input').value;
-    var cityValue = document.querySelector('.city-input');
+    var cityValue = document.querySelector('.city-input').value;
     var emailValue = document.querySelector('.email-input').value;
 
     const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
-    const adressRegex = /^[a-zA-Z0-9\s,'-]*$/;
+    const adressRegex = /^[0-9]{1,4}(([\-\/][0-9]{1,4})|(\/[ABCDFGHJKLMNPRSTV]{1,2}))*$/;
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     //form.reset();
@@ -24,11 +24,11 @@ function formValidation() {
     if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
     //Adress checking
-    /* if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.adress-error').innerHTML = ""; */
+    if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "adresse incorrects ou interdits";
+    else document.querySelector('.adress-error').innerHTML = ""; 
     //City checking
-    /* if(!cityValue.match(letters)) document.querySelector('.city-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.city-error').innerHTML = ""; */ 
+    if(!cityValue.match(letters)) document.querySelector('.city-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.city-error').innerHTML = ""; 
     //Mail checking
     if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
     else document.querySelector('.email-error').innerHTML = "";
@@ -64,7 +64,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       let totalPrice = 0;
 
       //Create element for each element in storage
-      cartItms.forEach( (data) => {
+      cartItms.forEach((data) => {
         const createDiv = document.createElement("div");
         const itemImg = document.createElement("div");
         const details = document.createElement("div")
@@ -119,8 +119,3 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
-
-/*   for (let i =0; i<15;i++) {
-   Math.floor(Math.random()*36)
-   console.log( Math.floor(Math.random()*36))
-  } */
