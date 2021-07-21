@@ -12,6 +12,7 @@ function formValidation() {
     var emailValue = document.querySelector('.email-input').value;
 
     const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
+    const adressRegex = /^[a-zA-Z0-9\s,'-]*$/;
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     //form.reset();
@@ -23,12 +24,34 @@ function formValidation() {
     if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
     //Adress checking
+    /* if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.adress-error').innerHTML = ""; */
+    //City checking
+    /* if(!cityValue.match(letters)) document.querySelector('.city-error').innerHTML = "Caractères incorrects ou interdits";
+    else document.querySelector('.city-error').innerHTML = ""; */ 
     //Mail checking
     if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
     else document.querySelector('.email-error').innerHTML = "";
   })
 } 
 
+//si tout les input sont validé alors post
+/* const allInput = document.querySelectorAll('.error-msg');
+if(allInput.innerHTML = "") {
+  //POST + reset + localstorage clear
+  //form.reset();
+  //localStorage.clear();
+} */
+
+
+//POST FORM & CART
+
+/* fetch("http://localhost:3000/api/cameras/order", {method: 'POST' })
+  .then((response) => {
+    response.json().then((data) => {
+
+    })
+  }) */
 
 //Post order
 formValidation();

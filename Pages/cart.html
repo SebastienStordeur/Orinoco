@@ -30,40 +30,34 @@
         <div class="cart__form">
             <h2>Formulaire de commande</h2>
             <form action="" class="cart__form--order">
-                
+
                 <label for="name">Votre nom : </label>
                 <input type="text" class="text-input name-input" name="name" placeholder="Nom">
                 <div class="name-error error-msg"></div>
+
                 <label for="lastname">Votre prénom : </label>
                 <input type="text" class="text-input lastname-input" name="lastname" placeholder="Prénom">
                 <div class="lastname-error error-msg"></div>
+
                 <label for="adress">Votre adresse :</label>
                 <input type="text" class="text-input adress-input" name="adress" placeholder="Adresse">
                 <div class="adress-error error-msg"></div>
+
                 <label for="city">Ville</label>
                 <input type="text" class="text-input city-input" name="city" placeholder="Ville">
                 <div class="city-error error-msg"></div>
+
                 <label for="email">Adresse email</label>
-                <input type="text" class="email-input city-input" name="email" placeholder="Adresse email">
+                <input type="text" class="text-input email-input" name="email" placeholder="Adresse email">
                 <div class="email-error error-msg"></div>
+
                 <button class="order-btn">Passer la commande</button>
             </form>
         </div>
         <div class="cart__content">
             <h2>Panier</h2>
             <h4 class="cart__content--price">Prix : <span class="total-price"></span></h4>
-            <div class="cart__content--items">
-                <!-- <div class="cart__content--item">
-                    <div class="cart__content--item__img">
-
-                    </div>
-                    <span class="cart__content--item__price">
-                    </span>
-                </div> -->
-                
-            </div>
-            
-            
+            <div class="cart__content--items"></div>
         </div>
     </section>
     <footer class="footer">
