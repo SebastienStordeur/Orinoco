@@ -26,6 +26,12 @@ var items = [];
                     }
                 }
                 assignDatas(data);
-                storage(data);
+
+                document.querySelector('.product__addCart').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    storage(data)
+                })
+                
+                //storage(data);
             })
         })

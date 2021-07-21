@@ -24,7 +24,7 @@ function formValidation() {
     if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
     //Adress checking
-    if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "adresse incorrects ou interdits";
+    if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.adress-error').innerHTML = ""; 
     //City checking
     if(!cityValue.match(letters)) document.querySelector('.city-error').innerHTML = "Caractères incorrects ou interdits";
@@ -119,3 +119,8 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
+
+
+/*   var json = { ... };
+var key = "foo";
+delete json[key]; */
