@@ -9,6 +9,11 @@ a {
   color: inherit;
 }
 
+@media (max-width: 1440px) {
+  body {
+    max-width: 100%;
+  }
+}
 .nav-bar {
   display: flex;
   flex-direction: row;
@@ -151,11 +156,11 @@ a {
 @media (max-width: 710px) {
   .footer {
     height: auto;
-    padding-left: 2rem;
     padding-bottom: 2rem;
   }
   .footer-wrapper {
     flex-direction: column;
+    margin-left: 2rem;
   }
   .footer-column {
     margin-top: 2rem;

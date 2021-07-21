@@ -25,10 +25,10 @@
 @media (max-width: 710px) {
     .footer {
         height: auto;
-        padding-left: 2rem;
         padding-bottom: 2rem;
         &-wrapper {
             flex-direction: column;
+            margin-left: 2rem;
         }
         &-column {
             margin-top: 2rem;
