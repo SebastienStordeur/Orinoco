@@ -102,6 +102,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       })
     }
     deleteProduct();
+    deleteCart();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })

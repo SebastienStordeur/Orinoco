@@ -56,7 +56,10 @@
   font-size: 12px;
   margin-top: -1.75rem;
 }
-
+.delete-cart {
+  font-size: 12px;
+  cursor: pointer;
+}
 @media (max-width: 650px) {
   .cart {
     flex-direction: column-reverse;

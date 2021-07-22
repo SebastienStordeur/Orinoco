@@ -19,14 +19,25 @@ function storage(data) {
 
 function formStorage() {
   form = [ {
-    lastName: String,
-    firstName: String,
-    adress: String,
-    city: String,
-    email: String
+    lastName: "string",
+    firstName: "string",
+    adress: "string",
+    city: "string",
+    email: "string"
     }
   ];
   console.log(form)
   form.push(data);
   localStorage.setItem('Form', JSON.stringify(form));
+}
+
+function deleteCart() {
+  const removeAllItemsBtn = document.querySelector('.delete-cart');
+  const cartContainer = document.querySelector('.cart__content--items');
+
+  removeAllItemsBtn.addEventListener('click', (e) => {
+    cartContainer.innerHTML = "";
+    localStorage.removeItem('Cart');
+    totalPrice = 0;
+  })
 }
