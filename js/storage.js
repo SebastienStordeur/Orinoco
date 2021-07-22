@@ -1,5 +1,4 @@
-
-
+//function to store products in cart
 function storage(data) {
     let cartItms = JSON.parse(localStorage.getItem("Cart"));
     //if cart not empty
@@ -16,28 +15,24 @@ function storage(data) {
       console.log(cartItms);
     }
 }
-
-function formStorage() {
-  form = [ {
-    lastName: "string",
-    firstName: "string",
-    adress: "string",
-    city: "string",
-    email: "string"
+//Store form content
+/* function formStorage() {
+  formContent = [ {
+    lastName: lastNameValue,
+    firstName: firstNameValue,
+    adress: adressValue,
+    city: cityValue,
+    email: emailValue
     }
   ];
-  console.log(form)
-  form.push(data);
-  localStorage.setItem('Form', JSON.stringify(form));
-}
-
+  localStorage.setItem('contact', JSON.stringify(formContent));
+} */
+//Delete all the content inside of cart
 function deleteCart() {
   const removeAllItemsBtn = document.querySelector('.delete-cart');
-  const cartContainer = document.querySelector('.cart__content--items');
-
-  removeAllItemsBtn.addEventListener('click', (e) => {
-    cartContainer.innerHTML = "";
+  removeAllItemsBtn.addEventListener('click', () => {
+    shoppingCart.innerHTML = "";
     localStorage.removeItem('Cart');
-    totalPrice = 0;
+    document.querySelector('.total-price').innerHTML = "";
   })
 }

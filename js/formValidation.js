@@ -1,7 +1,7 @@
 const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
 
-//Validate every single input
+//Validate every single input + store all the values in an array
 function formValidation() {
   form.addEventListener('submit', (e) => {
 
@@ -32,6 +32,18 @@ function formValidation() {
     //Mail checking
     if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
     else document.querySelector('.email-error').innerHTML = "";
+
+    //LocalStorage of form's values
+    formContent = [ {
+      lastName: lastNameValue,
+      firstName: firstNameValue,
+      adress: adressValue,
+      city: cityValue,
+      email: emailValue
+      }
+    ];
+    localStorage.setItem('contact', JSON.stringify(formContent));
+    console.log(formContent)
   })
 } 
 
@@ -88,18 +100,23 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     //Delete the selected product 
     function deleteProduct() {
       shoppingCart.addEventListener('click', (e) => {
-        if (e.target.classList[0] === "cart__content--item__delete") {
-          e.target.parentElement.parentElement.remove();
-          
-          //Using splice method to remove the selected item
-          cartItms.splice(cartItms[e], 1);
-          console.log(cartItms)
+        for(let i=0; i<cartItms.length; i++) {console.log(i)
+          if (e.target.classList[0] === "cart__content--item__delete") {
+            e.target.parentElement.parentElement.remove();
+            
+            //Using splice method to remove the selected item
+            
+            cartItms.splice(i, 1);
+            console.log(cartItms)
+          }
+          //localStorage.setItem('Cart', JSON.stringify(cartItms))
+            totalPrice -= data.price/100;
+  
+            //console.log(totalPrice)
+          //console.log(cartItms)
         }
-        //localStorage.setItem('Cart', JSON.stringify(cartItms))
-          totalPrice -= data.price/100;
-          console.log(totalPrice)
-        //console.log(cartItms)
-      })
+      }
+      )
     }
     deleteProduct();
     deleteCart();
