@@ -1,5 +1,6 @@
 const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
+const errorMsg = document.querySelectorAll('.error-msg');
 
 //Validate every single input + store all the values in an array
 function formValidation() {
@@ -10,17 +11,18 @@ function formValidation() {
     var adressValue = document.querySelector('.adress-input').value;
     var cityValue = document.querySelector('.city-input').value;
     var emailValue = document.querySelector('.email-input').value;
-
-    const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractère spéciaux multilangues
+    
+    const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractères spéciaux multilangues
     const adressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
-    //form.reset();
+
     e.preventDefault();
+
+    //CHECKING EACH INPUTS
     //Name checking
     if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
-    //LastName checking
+    //FirstName checking
     if(!firstNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.firstname-error').innerHTML = "";
     //Adress checking
@@ -33,19 +35,50 @@ function formValidation() {
     if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
     else document.querySelector('.email-error').innerHTML = "";
 
-    //LocalStorage of form's values
-    formContent = [ {
-      lastName: lastNameValue,
-      firstName: firstNameValue,
-      adress: adressValue,
-      city: cityValue,
-      email: emailValue
-      }
-    ];
-    localStorage.setItem('contact', JSON.stringify(formContent));
-    console.log(formContent)
-  })
-} 
+    //STORING INPUT VALUES
+    //if(errorMsg.textContent="") {
+      contact = 
+        {
+        firstname: firstNameValue,
+        lastName: lastNameValue,
+        adress: adressValue,
+        city: cityValue,
+        email: emailValue
+        }
+      
+      localStorage.setItem('Contact', JSON.stringify(contact));
+      postData()
+    })
+  }
+//Create an object made of contact and product ids, then send it to the back
+  function postData() {
+    let products = JSON.parse(localStorage.getItem("productId"));
+    let contact = JSON.parse(localStorage.getItem("Contact"));
+  //Datas to send (form + cart)
+    const toSend = {
+      contact,
+      products
+    };
+    console.log(toSend)
+
+    const promise = fetch("http://localhost:3000/api/cameras/order", {
+      method: 'POST',
+      body: JSON.stringify(toSend),
+       headers: {
+        "Content-Type" : "application/json"
+      }, 
+    })
+    console.log(promise)
+    promise.then((response) => {
+        try{
+          console.log(response);
+        }catch(e) {
+          console.log(e);
+        }
+      })
+  }
+
+ 
 
 //si tout les input sont validés alors post
 /* const allInput = document.querySelectorAll('.error-msg');
@@ -60,6 +93,7 @@ if(allInput.innerHTML = "") {
 
 //Post order
 formValidation();
+//postData(data);
 
 fetch("http://localhost:3000/api/cameras", {method: 'GET'})
   .then((response) => {
@@ -67,7 +101,9 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       //Get element from localStorage
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let totalPrice = 0;
+      
 
+      
       //Create element for each element in storage
       cartItms.forEach((data) => {
         const createDiv = document.createElement("div");
@@ -96,6 +132,9 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         price.innerHTML = `<h3>${data.price/100 + "€"}</h3>`;
         deleteItm.innerHTML = "Supprimer ce produit";
         totalPrice += data.price/100;
+        //console.log(data._id)
+       
+
       })
     //Delete the selected product 
     function deleteProduct() {
@@ -127,12 +166,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
 
 //POST FORM & CART
 
-/* fetch("http://localhost:3000/api/cameras/order", {method: 'POST' })
-  .then((response) => {
-    response.json().then((data) => {
 
-    })
-  })  */
 
 
 
