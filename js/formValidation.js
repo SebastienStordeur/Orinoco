@@ -59,7 +59,6 @@ function formValidation() {
       contact,
       products
     };
-    console.log(toSend)
 
     const promise = fetch("http://localhost:3000/api/cameras/order", {
       method: 'POST',
@@ -68,19 +67,18 @@ function formValidation() {
         "Content-Type" : "application/json"
       }, 
     })
-    console.log(promise)
-    promise.then((response) => {
+    //Get the response from the back
+    promise.then(async(response) => {
         try{
-          console.log(response);
-          
+          localStorage.clear();
+          const responseContent = await response.json()
+          localStorage.setItem('thanks', JSON.stringify(responseContent))
+          location.href = '../Pages/confirm.html' //Redirect to a confirmation page with orderId
         }catch(e) {
           console.log(e);
         }
       })
   }
-
- 
-
 //si tout les input sont validés alors post
 /* const allInput = document.querySelectorAll('.error-msg');
 if(allInput.innerHTML = "") {
@@ -90,11 +88,7 @@ if(allInput.innerHTML = "") {
 } */
 
 
-
-
-//Post order
 formValidation();
-//postData(data);
 
 fetch("http://localhost:3000/api/cameras", {method: 'GET'})
   .then((response) => {
