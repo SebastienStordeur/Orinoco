@@ -39,9 +39,9 @@ function formValidation() {
     //if(errorMsg.textContent="") {
       contact = 
         {
-        firstname: firstNameValue,
+        firstName: firstNameValue,
         lastName: lastNameValue,
-        adress: adressValue,
+        address: adressValue,
         city: cityValue,
         email: emailValue
         }
@@ -72,6 +72,7 @@ function formValidation() {
     promise.then((response) => {
         try{
           console.log(response);
+          
         }catch(e) {
           console.log(e);
         }
