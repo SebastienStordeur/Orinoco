@@ -242,6 +242,9 @@ a {
   margin: auto;
   border-radius: 3rem;
 }
+.thanks p {
+  margin: 0 3rem;
+}
 
 .cart {
   display: flex;

@@ -50,7 +50,7 @@ function formValidation() {
       postData()
     })
   }
-//Create an object made of contact and product ids, then send it to the back
+  //Create an object made of contact and product ids, then send it to the back
   function postData() {
     let products = JSON.parse(localStorage.getItem("productId"));
     let contact = JSON.parse(localStorage.getItem("Contact"));
@@ -59,7 +59,7 @@ function formValidation() {
       contact,
       products
     };
-
+    //Send datas to the back
     const promise = fetch("http://localhost:3000/api/cameras/order", {
       method: 'POST',
       body: JSON.stringify(toSend),
@@ -79,14 +79,6 @@ function formValidation() {
         }
       })
   }
-//si tout les input sont validés alors post
-/* const allInput = document.querySelectorAll('.error-msg');
-if(allInput.innerHTML = "") {
-  //POST + reset + localstorage clear
-  //form.reset();
-  //localStorage.clear();
-} */
-
 
 formValidation();
 
@@ -95,10 +87,9 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     response.json().then((data) => {
       //Get element from localStorage
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
+      let productId = JSON.parse(localStorage.getItem("productId"));
       let totalPrice = 0;
-      
 
-      
       //Create element for each element in storage
       cartItms.forEach((data) => {
         const createDiv = document.createElement("div");
@@ -127,44 +118,31 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         price.innerHTML = `<h3>${data.price/100 + "€"}</h3>`;
         deleteItm.innerHTML = "Supprimer ce produit";
         totalPrice += data.price/100;
-        //console.log(data._id)
-       
-
       })
     //Delete the selected product 
     function deleteProduct() {
-      shoppingCart.addEventListener('click', (e) => {
-        for(let i=0; i<cartItms.length; i++) {console.log(i)
-          if (e.target.classList[0] === "cart__content--item__delete") {
-            e.target.parentElement.parentElement.remove();
-            
-            //Using splice method to remove the selected item
-            
-            cartItms.splice(i, 1);
-            console.log(cartItms)
-          }
-          //localStorage.setItem('Cart', JSON.stringify(cartItms))
-            totalPrice -= data.price/100;
-  
-            //console.log(totalPrice)
-          //console.log(cartItms)
-        }
-      }
-      )
+      let deleteBtn = document.querySelectorAll('.cart__content--item__delete')
+      //Checking which deleteBtn is clicked
+      for (let i=0; i<deleteBtn.length; i++){
+        deleteBtn[i].addEventListener('click', (e) => {
+          e.preventDefault();
+          //Remove item from cart
+          e.target.parentElement.parentElement.remove();
+          cartItms.splice(i,1);
+          productId.splice(i,1);
+          localStorage.setItem('Cart', JSON.stringify(cartItms));
+          localStorage.setItem('productId', JSON.stringify(productId));
+          //Recalculate the price of current cart
+          totalPrice = 0;
+          cartItms.forEach((data) => {
+            totalPrice += data.price/100;
+          })
+          document.querySelector('.total-price').innerHTML = totalPrice + "€";
+        })
+      }  
     }
     deleteProduct();
     deleteCart();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
-
-
-//POST FORM & CART
-
-
-
-
-
-/*   var json = { ... };
-var key = "foo";
-delete json[key]; */
