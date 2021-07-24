@@ -1,5 +1,4 @@
 const id = new URLSearchParams(window.location.search).get("id");
-//let cartItms = JSON.parse(localStorage.getItem("Cart"));
 
 function assignAndStore() { 
 //get specific product datas + assign
@@ -24,7 +23,6 @@ function assignAndStore() {
                     selector.appendChild(choice);
                     choice.innerHTML = lense;
                 }
-                //document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
                 //Store in localStorage the current product on click
                 document.querySelector('.product__addCart').addEventListener('click', (e) => {
                     e.preventDefault();

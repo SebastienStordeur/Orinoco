@@ -1,7 +1,5 @@
 const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
-const errorMsg = document.querySelectorAll('.error-msg');
-
 
 //Validate every single input + store all the values in an array
 function formValidation() {
@@ -12,7 +10,6 @@ function formValidation() {
     var adressValue = document.querySelector('.adress-input').value;
     var cityValue = document.querySelector('.city-input').value;
     var emailValue = document.querySelector('.email-input').value;
-    
     const letters=/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/; //contiens uniquement lettres et caractères spéciaux multilangues
     const adressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20,8 +17,44 @@ function formValidation() {
     e.preventDefault();
 
     //CHECKING EACH INPUTS
-    //Name checking
-    if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
+    function checkInputs() {
+      //LastName, firstname & city checking
+      if (letters.test(lastNameValue) && letters.test(firstNameValue) && letters.test(cityValue)) return true
+      else {
+        alert('Le champ prénom, nom ou ville comporte des caractères interdits (chiffres et symboles)');
+        return false;
+      }
+
+      //Adress checking
+      if (adressRegex.test(adressValue)) return true;
+      else {
+        alert("L'adresse n'est pas valide");
+        return false;
+      } 
+      //Email checking
+      if (emailRegex.test(emailValue)) return true;
+      else {
+        alert ("Email incorrect");
+        return false
+      }
+    }
+    //If form is true (valid), and shoppingCart not empty, then post
+    if (checkInputs() && !cartItms==[]) 
+    {
+      contact = {
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        address: adressValue,
+        city: cityValue,
+        email: emailValue
+        }
+      localStorage.setItem('Contact', JSON.stringify(contact));
+      postData()
+      }
+      else alert('erreur')
+    
+    
+    /* if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
     else document.querySelector('.lastname-error').innerHTML = "";
     //FirstName checking
     if(!firstNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
@@ -34,11 +67,10 @@ function formValidation() {
     else document.querySelector('.city-error').innerHTML = ""; 
     //Mail checking
     if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
-    else document.querySelector('.email-error').innerHTML = "";
+    else document.querySelector('.email-error').innerHTML = ""; */
 
     //STORING INPUT VALUES
-    //if(errorMsg.textContent="") {
-      contact = 
+     /*  contact = 
         {
         firstName: firstNameValue,
         lastName: lastNameValue,
@@ -46,9 +78,13 @@ function formValidation() {
         city: cityValue,
         email: emailValue
         }
+      localStorage.setItem('Contact', JSON.stringify(contact)) */;
+      //Need validation
+     /*  if (!contact && shoppingCart.value == '') {
+        postData()
+      }
+      else alert="panier vide ou formulaire mal rempli" */
       
-      localStorage.setItem('Contact', JSON.stringify(contact));
-      postData()
     })
   }
   //Create an object made of contact and product ids, then send it to the back
@@ -75,8 +111,8 @@ function formValidation() {
           const responseContent = await response.json()
           localStorage.setItem('thanks', JSON.stringify(responseContent))
           location.href = '../Pages/confirm.html' //Redirect to a confirmation page with orderId
-        }catch(e) {
-          console.log(e);
+        }catch(err) {
+          alert("Une erreur s'est produite")
         }
       })
   }
@@ -90,8 +126,6 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let productId = JSON.parse(localStorage.getItem("productId"));
       let totalPrice = 0;
-      //Display the number of products in the cart
-      document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
       //Create element for each element in storage
       cartItms.forEach((data) => {
         const createDiv = document.createElement("div");

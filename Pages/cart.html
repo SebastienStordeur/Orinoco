@@ -29,26 +29,26 @@
     <section class="cart">
         <div class="cart__form">
             <h2>Formulaire de commande</h2>
-            <form action="" class="cart__form--order">
+            <form class="cart__form--order">
 
                 <label for="lastname">Votre nom : </label>
-                <input type="text" class="text-input lastname-input" name="lastname" placeholder="Nom">
+                <input type="text" class="text-input lastname-input" name="lastname" placeholder="Nom" required>
                 <div class="lastname-error error-msg"></div>
 
                 <label for="firstname">Votre prénom : </label>
-                <input type="text" class="text-input firstname-input" name="firstname" placeholder="Prénom">
+                <input type="text" class="text-input firstname-input" name="firstname" placeholder="Prénom" required>
                 <div class="firstname-error error-msg"></div>
 
                 <label for="adress">Votre adresse :</label>
-                <input type="text" class="text-input adress-input" name="adress" placeholder="Adresse">
+                <input type="text" class="text-input adress-input" name="adress" placeholder="Adresse" required>
                 <div class="adress-error error-msg"></div>
 
-                <label for="city">Ville</label>
-                <input type="text" class="text-input city-input" name="city" placeholder="Ville">
+                <label for="city">Votre ville</label>
+                <input type="text" class="text-input city-input" name="city" placeholder="Ville" required>
                 <div class="city-error error-msg"></div>
 
-                <label for="email">Adresse email</label>
-                <input type="text" class="text-input email-input" name="email" placeholder="Adresse email">
+                <label for="email">Votre adresse email</label>
+                <input type="text" class="text-input email-input" name="email" placeholder="Adresse email" required>
                 <div class="email-error error-msg"></div>
 
                 <button class="order-btn">Passer la commande</button>
