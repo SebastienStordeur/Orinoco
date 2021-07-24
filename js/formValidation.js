@@ -2,6 +2,7 @@ const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
 const errorMsg = document.querySelectorAll('.error-msg');
 
+
 //Validate every single input + store all the values in an array
 function formValidation() {
   form.addEventListener('submit', (e) => {
@@ -89,7 +90,8 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let productId = JSON.parse(localStorage.getItem("productId"));
       let totalPrice = 0;
-
+      //Display the number of products in the cart
+      document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
       //Create element for each element in storage
       cartItms.forEach((data) => {
         const createDiv = document.createElement("div");
@@ -137,6 +139,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
           cartItms.forEach((data) => {
             totalPrice += data.price/100;
           })
+          document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
           document.querySelector('.total-price').innerHTML = totalPrice + "€";
         })
       }  

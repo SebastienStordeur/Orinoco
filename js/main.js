@@ -26,7 +26,7 @@ function displayItems() {
             details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
           }
       })
-      .catch ((error) => {
+      .catch (() => {
         itemList.innerHTML = "Nous n'avons pas pu afficher de produits, revenez ultérieurement";
       })
   );
