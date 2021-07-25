@@ -2,14 +2,12 @@
 function storage(data) {
     let cartItms = JSON.parse(localStorage.getItem("Cart"));
     let productId = JSON.parse(localStorage.getItem("productId"));
-    
     //if cart not empty
     if (cartItms) {
       cartItms.push(data);
       productId.push(data._id)
       localStorage.setItem('Cart', JSON.stringify(cartItms));
       localStorage.setItem('productId', JSON.stringify(productId));
-      console.log(cartItms);
     }
     //else, the cart is empty, create an array
     else {
@@ -20,7 +18,6 @@ function storage(data) {
       productId.push(data._id);
       localStorage.setItem('Cart', JSON.stringify(cartItms));
       localStorage.setItem('productId', JSON.stringify(productId));
-      console.log(cartItms);
     }
     document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
 }

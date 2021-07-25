@@ -1,10 +1,12 @@
 const shoppingCart = document.querySelector('.cart__content--items');;
 const form = document.querySelector('form');
 
+
+formValidation();
+
 //Validate every single input + store all the values in an array
 function formValidation() {
   form.addEventListener('submit', (e) => {
-
     var firstNameValue = document.querySelector('.firstname-input').value;
     var lastNameValue = document.querySelector('.lastname-input').value;
     var adressValue = document.querySelector('.adress-input').value;
@@ -15,31 +17,37 @@ function formValidation() {
     const emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     e.preventDefault();
-
     //CHECKING EACH INPUTS
     function checkInputs() {
+      //If all 3 validations functions are true, then checkInput() is true
+      if (checkLettersReg() && checkAdressReg() && checkEmailReg()) return true
       //LastName, firstname & city checking
-      if (letters.test(lastNameValue) && letters.test(firstNameValue) && letters.test(cityValue)) return true
-      else {
-        alert('Le champ prénom, nom ou ville comporte des caractères interdits (chiffres et symboles)');
-        return false;
+      function checkLettersReg() {
+        if (letters.test(lastNameValue) && letters.test(firstNameValue) && letters.test(cityValue)) return true
+        else {
+          alert('Le champ prénom, nom ou ville comporte des caractères interdits (chiffres et symboles)');
+          return false;
+        }
       }
-
       //Adress checking
-      if (adressRegex.test(adressValue)) return true;
-      else {
-        alert("L'adresse n'est pas valide");
-        return false;
-      } 
+      function checkAdressReg() {
+        if (adressRegex.test(adressValue)) return true;
+        else {
+          alert("L'adresse n'est pas valide");
+          return false;
+        } 
+      }
       //Email checking
-      if (emailRegex.test(emailValue)) return true;
-      else {
+      function checkEmailReg() {
+        if (emailRegex.test(emailValue)) return true;
+        else {
         alert ("Email incorrect");
         return false
+        }
       }
     }
     //If form is true (valid), and shoppingCart not empty, then post
-    if (checkInputs() && !cartItms==[]) 
+     if (checkInputs() && !cartItms==[]) 
     {
       contact = {
         firstName: firstNameValue,
@@ -51,40 +59,7 @@ function formValidation() {
       localStorage.setItem('Contact', JSON.stringify(contact));
       postData()
       }
-      else alert('erreur')
-    
-    
-    /* if(!lastNameValue.match(letters)) document.querySelector('.lastname-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.lastname-error').innerHTML = "";
-    //FirstName checking
-    if(!firstNameValue.match(letters)) document.querySelector('.firstname-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.firstname-error').innerHTML = "";
-    //Adress checking
-    if(!adressValue.match(adressRegex)) document.querySelector('.adress-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.adress-error').innerHTML = ""; 
-    //City checking
-    if(!cityValue.match(letters)) document.querySelector('.city-error').innerHTML = "Caractères incorrects ou interdits";
-    else document.querySelector('.city-error').innerHTML = ""; 
-    //Mail checking
-    if(!emailValue.match(emailRegex)) document.querySelector('.email-error').innerHTML = "Email invalide";
-    else document.querySelector('.email-error').innerHTML = ""; */
-
-    //STORING INPUT VALUES
-     /*  contact = 
-        {
-        firstName: firstNameValue,
-        lastName: lastNameValue,
-        address: adressValue,
-        city: cityValue,
-        email: emailValue
-        }
-      localStorage.setItem('Contact', JSON.stringify(contact)) */;
-      //Need validation
-     /*  if (!contact && shoppingCart.value == '') {
-        postData()
-      }
-      else alert="panier vide ou formulaire mal rempli" */
-      
+    else alert('Erreur, vérifiez le contenu de votre panier ainsi que les informations du formulaire.')    
     })
   }
   //Create an object made of contact and product ids, then send it to the back
@@ -116,8 +91,6 @@ function formValidation() {
         }
       })
   }
-
-formValidation();
 
 fetch("http://localhost:3000/api/cameras", {method: 'GET'})
   .then((response) => {
