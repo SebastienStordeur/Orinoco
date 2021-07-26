@@ -171,6 +171,9 @@ a {
   flex-direction: row;
   margin-top: 7rem;
 }
+.product__catch-error {
+  font-size: 22px;
+}
 .product__photo-container {
   width: 25rem;
   height: 25rem;

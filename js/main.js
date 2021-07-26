@@ -25,10 +25,9 @@ function displayItems() {
             itemImg.innerHTML = `<img src="${object.imageUrl}" alt="${object.name}"/>`;
             details.innerHTML = `<h3>${object.name}</h3>` + `<span>${object.price/100} € </span>`;
           }
-      })
-      .catch (() => {
-        itemList.innerHTML = "Nous n'avons pas pu afficher de produits, revenez ultérieurement";
-      })
-  );
+      }))
+  .catch (() => {
+        itemList.innerHTML = "Nous n'avons pas pu afficher de produits, revenez ultérieurement.";
+      });
 }
 displayItems();

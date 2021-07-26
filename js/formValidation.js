@@ -86,8 +86,9 @@ function formValidation() {
           const responseContent = await response.json()
           localStorage.setItem('thanks', JSON.stringify(responseContent))
           location.href = '../Pages/confirm.html' //Redirect to a confirmation page with orderId
-        }catch(err) {
-          alert("Une erreur s'est produite")
+        }
+        catch(err) {
+          alert("Une erreur s'est produite");
         }
       })
   }
@@ -156,3 +157,6 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
     })
   })
+  .catch (() => {
+      document.querySelector('.error-catch').innerHTML = "Une erreur s'est produite, nous ne pouvons pas afficher le contenu de votre panier."
+    })

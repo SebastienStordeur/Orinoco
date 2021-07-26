@@ -1,4 +1,5 @@
 const id = new URLSearchParams(window.location.search).get("id");
+const catchError = document.querySelector('.product__catch-error');
 
 function assignAndStore() { 
 //get specific product datas + assign
@@ -30,5 +31,8 @@ function assignAndStore() {
                 })
             })
         })
+        .catch (() => {
+            catchError.innerHTML = "Nous n'avons pas pu afficher votre produit, revenez ultérieurement.";
+        })  
 }
 assignAndStore();
