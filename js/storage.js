@@ -5,7 +5,6 @@ function storage(data) {
     let optionSelected = JSON.parse(localStorage.getItem('Lense'));
     //Lense chosen
     let selectedLense = document.querySelector('.select-lense').value;
-    
     //if cart not empty
     if (cartItms) {
       cartItms.push(data);
