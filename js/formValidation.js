@@ -99,9 +99,12 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
       //Get element from localStorage
       let cartItms = JSON.parse(localStorage.getItem("Cart"));
       let productId = JSON.parse(localStorage.getItem("productId"));
+      let optionSelected = JSON.parse(localStorage.getItem('Lense'));
       let totalPrice = 0;
+      let numberId = 0;
       //Create element for each element in storage
       cartItms.forEach((data) => {
+        
         const createDiv = document.createElement("div");
         const itemImg = document.createElement("div");
         const details = document.createElement("div")
@@ -115,6 +118,7 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         details.appendChild(itemName);
         details.appendChild(price);
         details.appendChild(deleteItm);
+        createDiv.setAttribute("id", numberId);
 
         createDiv.classList.add('cart__content--item');
         itemImg.classList.add('cart__content--item__img');
@@ -128,9 +132,11 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         price.innerHTML = `<h3>${data.price/100 + "€"}</h3>`;
         deleteItm.innerHTML = "Supprimer ce produit";
         totalPrice += data.price/100;
+        console.log(numberId)
+        numberId += 1
       })
     //Delete the selected product 
-    function deleteProduct() {
+    /* function deleteProduct() {
       let deleteBtn = document.querySelectorAll('.cart__content--item__delete')
       //Checking which deleteBtn is clicked
       for (let i=0; i<deleteBtn.length; i++){
@@ -140,8 +146,10 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
           e.target.parentElement.parentElement.remove();
           cartItms.splice(i,1);
           productId.splice(i,1);
+          optionSelected.splice(i,1);
           localStorage.setItem('Cart', JSON.stringify(cartItms));
           localStorage.setItem('productId', JSON.stringify(productId));
+          localStorage.setItem('Lense', JSON.stringify(optionSelected));
           //Recalculate the price of current cart
           totalPrice = 0;
           cartItms.forEach((data) => {
@@ -151,7 +159,32 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
           document.querySelector('.total-price').innerHTML = totalPrice + "€";
         })
       }  
-    }
+    } */
+    function deleteProduct() {
+      //Checking which deleteBtn is clicked
+        shoppingCart.addEventListener('click', (e) => {
+          e.preventDefault();
+          //Remove item from cart
+          if(e.target.classList[0] === "cart__content--item__delete") {
+            e.target.parentElement.parentElement.remove();
+            cartItms.splice(e.numberId,1);
+            productId.splice(e.numberId,1);
+            optionSelected.splice(e.numberId,1);
+            localStorage.setItem('Cart', JSON.stringify(cartItms));
+            localStorage.setItem('productId', JSON.stringify(productId));
+            localStorage.setItem('Lense', JSON.stringify(optionSelected));
+          }
+          //Recalculate the price of current cart
+          totalPrice = 0;
+          cartItms.forEach((data) => {
+            totalPrice += data.price/100;
+          })
+          document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
+          document.querySelector('.total-price').innerHTML = totalPrice + "€";
+        })
+    }  
+    
+
     deleteProduct();
     deleteCart();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";

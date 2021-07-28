@@ -14,7 +14,7 @@ function storage(data) {
       console.log(selectedLense)
       localStorage.setItem('Cart', JSON.stringify(cartItms));
       localStorage.setItem('productId', JSON.stringify(productId));
-      localStorage.setItem('Lense', JSON.stringify(optionSelected))
+      localStorage.setItem('Lense', JSON.stringify(optionSelected));
     }
     //else, the cart is empty, create an array
     else {
