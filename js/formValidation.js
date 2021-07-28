@@ -158,5 +158,5 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
     })
   })
   .catch (() => {
-      document.querySelector('.error-catch').innerHTML = "Une erreur s'est produite, nous ne pouvons pas afficher le contenu de votre panier."
-    })
+    document.querySelector('.error-catch').innerHTML = "Une erreur s'est produite, nous ne pouvons pas afficher le contenu de votre panier."
+  })
