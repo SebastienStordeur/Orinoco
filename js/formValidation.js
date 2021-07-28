@@ -136,29 +136,31 @@ fetch("http://localhost:3000/api/cameras", {method: 'GET'})
         numberId += 1
       })
 
-    function deleteProduct() {
-      //Checking which deleteBtn is clicked
-        shoppingCart.addEventListener('click', (e) => {
-          e.preventDefault();
-          //Remove item from cart
-          if(e.target.classList[0] === "cart__content--item__delete") {
+      function deleteProduct() {
+        let deleteBtn = document.querySelectorAll('.cart__content--item__delete')
+        //Checking which deleteBtn is clicked
+        for (let i=0; i<deleteBtn.length; i++){
+          deleteBtn[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            //Remove item from cart
             e.target.parentElement.parentElement.remove();
-            cartItms.splice(e.numberId,1);
-            productId.splice(e.numberId,1);
-            optionSelected.splice(e.numberId,1);
+            cartItms.splice(i,1);
+            productId.splice(i,1);
+            optionSelected.splice(i,1);
             localStorage.setItem('Cart', JSON.stringify(cartItms));
             localStorage.setItem('productId', JSON.stringify(productId));
             localStorage.setItem('Lense', JSON.stringify(optionSelected));
-          }
-          //Recalculate the price of current cart
-          totalPrice = 0;
-          cartItms.forEach((data) => {
-            totalPrice += data.price/100;
+            //Recalculate the price of current cart
+            totalPrice = 0;
+            cartItms.forEach((data) => {
+              totalPrice += data.price/100;
+            })
+            document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
+            document.querySelector('.total-price').innerHTML = totalPrice + "€";
+            location.reload();
           })
-          document.querySelector('.cart-content').innerHTML = '('+ cartItms.length +')';
-          document.querySelector('.total-price').innerHTML = totalPrice + "€";
-        })
-    }  
+        }  
+      } 
     deleteProduct();
     deleteCart();
     document.querySelector('.total-price').innerHTML = totalPrice + "€";
